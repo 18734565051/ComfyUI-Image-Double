@@ -1,4 +1,4 @@
-from image_double import ImageDouble
+from .image_double import ImageDouble
 
 NODE_CLASS_MAPPINGS = {
     "Example": ImageDouble

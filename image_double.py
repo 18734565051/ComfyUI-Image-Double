@@ -1,12 +1,12 @@
 import comfy.utils
-class ImageDouble:
 
+
+class ImageDouble:
 
     @classmethod
     def INPUT_TYPES(s):
-
-        return{"required":
-                    {"images": ("IMAGE", ),"upscale_method": (s.upscale_methods,),}
+        return {"required":
+                    {"images": ("IMAGE",), "upscale_method": (s.upscale_methods,), }
                 }
 
     upscale_methods = ["nearest-exact", "bilinear", "area", "bicubic", "lanczos"]
@@ -14,7 +14,7 @@ class ImageDouble:
     FUNCTION = "image_double"
     CATEGORY = "zt/image"
 
-    def image_double(self, images,upscale_method):
+    def image_double(self, images, upscale_method):
         samples = images.movedim(-1, 1)
         width = max(1, round(samples.shape[3] * 1024 / samples.shape[2]))
         height = max(1, round(images.shape[2] * 1024 / samples.shape[3]))
@@ -22,12 +22,9 @@ class ImageDouble:
         s = s.movedim(1, -1)
         return (s,)
 
-
     # @classmethod
     # def IS_CHANGED(s, image, string_field, int_field, float_field, print_to_screen):
     #    return ""
-
-
 
 # Set the web directory, any .js file in that directory will be loaded by the frontend as a frontend extension
 # WEB_DIRECTORY = "./somejs"
